@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack -d -watch",
+    "build": "webpack --watch",
     "start": "nodemon server/app.js"
   },
   "repository": {
@@ -24,6 +24,8 @@
     "@babel/preset-react": "^7.12.10",
     "babel-loader": "^8.2.2",
     "express": "^4.17.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
     "webpack": "^4.44.2",
     "webpack-cli": "^4.3.0"
   }

@@ -9,24 +9,32 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      allTeams: []
+      allTeams: [],
+      selectedTeams: []
     }
   }
 
   componentDidMount() {
     axios.get('https://www.balldontlie.io/api/v1/teams')
     .then(results => {
-      //console.log('here are results', results.data.data)
       this.setState({
         allTeams: results.data.data
       })
-      //console.log(this.state.allTeams)
+    })
+  }
+
+  handleTeamClick(team) {
+    event.preventDefault()
+    this.setState({
+      selectedTeams: this.state.selectedTeams.concat(team.abbreviation)
+    }, () => {
+      console.log('this team was clicked', this.state.selectedTeams)
     })
   }
 
   render() {
     return (
-      <TeamsTable allTeams={this.state.allTeams} />
+      <TeamsTable allTeams={this.state.allTeams} handleTeamClick={this.handleTeamClick.bind(this)}/>
 
     )
   }

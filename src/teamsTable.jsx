@@ -27,7 +27,7 @@ class TeamsTable extends React.Component {
         Please Select Two Teams
         <h1>{this.props.allTeams.map((team) => {
           return (
-            <Teams>{team.abbreviation} </Teams>
+            <Teams onClick={() => this.props.handleTeamClick(team)}>{team.abbreviation} </Teams>
           )
         })}</h1>
       </div>

@@ -30,6 +30,12 @@ class TeamsTable extends React.Component {
             <Teams onClick={() => this.props.handleTeamClick(team)}>{team.abbreviation} </Teams>
           )
         })}</h1>
+        <div>
+        Team 1: {this.props.selectedTeams[0]}
+        <div>
+        Team 2: {this.props.selectedTeams[1]}
+        </div>
+      </div>
       </div>
     )
   }

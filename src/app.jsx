@@ -4,38 +4,87 @@ import ReactDOM from 'react-dom'
 const axios = require('axios');
 
 import TeamsTable from './teamsTable.jsx'
+import PlayerForms from './playerForms.jsx'
+import MatchedPlayersList from './matchedPlayersList.jsx'
+import PlayerStats from './playerStats.jsx'
+
+import styled from 'styled-components'
+
+const Outer = styled.div`
+  background-color: blue;
+  display: flex;
+`;
+
+const Forms = styled.div`
+  width: 50%;
+  background-color: green;
+`;
+
+const Form2 = styled.div`
+  display: inline;
+  margin-left: 50%
+`;
 
 class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      allTeams: [],
-      selectedTeams: []
+      playerOne: '',
+      playerOneMatchesByID: [],
+      matchedPlayers: [],
+      chosenPlayerOneId: '',
+      playerOneStats: [],
+      playerOneClickedName: ''
     }
   }
 
-  componentDidMount() {
-    axios.get('https://www.balldontlie.io/api/v1/teams')
-    .then(results => {
-      this.setState({
-        allTeams: results.data.data
+  handleNameChange(event) {
+    //event.preventDefault();
+    this.setState({
+      playerOne: event.target.value
+    })
+    console.log('player one is ', this.state.playerOne)
+  }
+
+  handlePlayerOneSubmit() {
+    event.preventDefault();
+    axios.get('https://www.balldontlie.io/api/v1/players?search=' + this.state.playerOne)
+    .then((results) => {
+      //console.log('results.data.data is: ', results.data.data)
+      results.data.data.map((player) => {
+        var playersArray = [];
+        var playersObj = {};
+        playersObj[player.id] = player;
+        playersArray.push(playersObj)
+        this.setState({
+          matchedPlayers: this.state.matchedPlayers.concat(player)
+        })
       })
     })
   }
 
-  handleTeamClick(team) {
-    event.preventDefault()
-    this.setState({
-      selectedTeams: this.state.selectedTeams.concat(team.abbreviation)
-    }, () => {
-      console.log('this team was clicked', this.state.selectedTeams)
+  handleClick(playerClicked) {
+    console.log('this is playerOneClickedName: ', playerClicked)
+    axios.get('https://www.balldontlie.io/api/v1/season_averages?season=2018&player_ids[]=' + playerClicked.id)
+    .then((results) => {
+      console.log('this is single player stats: ', results.data.data[0])
+      this.setState({
+        playerOneStats: this.state.playerOneStats.concat(results.data.data[0]),
+        playerOneClickedName: playerClicked
+      })
     })
   }
 
   render() {
     return (
-      <TeamsTable allTeams={this.state.allTeams} handleTeamClick={this.handleTeamClick.bind(this)}/>
+      <Outer>
+        <Forms>
+          <PlayerForms handleNameChange={this.handleNameChange.bind(this)} handlePlayerOneSubmit={this.handlePlayerOneSubmit.bind(this)} />
+          <MatchedPlayersList matchedPlayers={this.state.matchedPlayers} handleClick={this.handleClick.bind(this)} />
+          <PlayerStats playerOne={this.state.chosenPlayerOneId} playerOneStats={this.state.playerOneStats} playerOneClickedName={this.state.playerOneClickedName} />
+        </Forms>
 
+      </Outer>
     )
   }
 }

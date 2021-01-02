@@ -4,14 +4,13 @@ import styled from 'styled-components'
 
 const axios = require('axios');
 
-const Names = styled.div`
+const Names2 = styled.div`
   cursor: pointer;
   margin-top: 20px;
   text-align: left;
-
 `;
 
-class MatchedPlayersList extends React.Component {
+class MatchedPlayerTwoList extends React.Component {
   constructor(props){
     super(props);
     this.state = {
@@ -20,15 +19,16 @@ class MatchedPlayersList extends React.Component {
   }
 
   render() {
-    if (this.props.matchedPlayers.length === undefined) return null;
+    if (this.props.matchedPlayerTwo.length === undefined) return null;
     return (
       <div>
-        {this.props.matchedPlayers.map((player) => {
+        {console.log('this is matched player two list: ', this.props.matchedPlayerTwo)}
+        {this.props.matchedPlayerTwo.map((player) => {
           return (
             <div>
-              <Names onClick={() => this.props.handleClick(player)}>
+              <Names2 onClick={() => this.props.handleClickTwo(player)}>
               &rarr;{player.first_name} {player.last_name}, {player.team.full_name}
-              </Names>
+              </Names2>
             </div>
           )
         })}
@@ -37,4 +37,4 @@ class MatchedPlayersList extends React.Component {
   }
 }
 
-export default MatchedPlayersList;
+export default MatchedPlayerTwoList;

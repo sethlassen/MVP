@@ -5,36 +5,62 @@ import styled from 'styled-components'
 const axios = require('axios');
 
 const PlayerOneName = styled.div`
-  background-color: red;
+  font-family: sans-serif;
   text-align: center;
   font-size: 28px;
   font-weight: bold;
   padding-top: 10px;
   padding-bottom: 10px;
+  letter-spacing: 5px;
+  margin-top: 15px;
 `;
 
-const Table = styled.table`
-  border-collapse: collapse;
-  width: 100%;
-`
+const Outer = styled.div`
 
-const CategoryRow = styled.tr`
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
+  display: flex;
 `;
 
-const CategoryData = styled.th`
-  padding-top: 10px;
+const PlayerTable = styled.table`
+
+width: 81%;
+border-collapse: collapse;
+`;
+
+const NameHeader = styled.th`
+border-bottom: 1px solid #585858;
+padding-bottom: 20px;
+padding-top 10px;
+font-size: 30px;
+
+`;
+
+const NameMiddle = styled.th`
+padding-bottom: 20px;
+padding-top 10px;
+font-size: 30px;
+border-bottom: 1px solid #585858;
+`;
+
+const PlayerHeaders = styled.th`
+border-bottom: 1px solid #585858;
+padding-bottom: 13px;
+padding-top 14px;
+font-size: 20px;
+font-weight: 100;
+`;
+
+const MiddleTable = styled.table`
+border-collapse: collapse;
+  width: 20%;
+  justify-content: center;
+`;
+
+const MiddleHeaders = styled.th`
+border-bottom: 1px solid #585858;
   padding-bottom: 10px;
-`;
-
-const StatsRow = styled.tr`
-  text-align: center
-`;
-
-const StatsData = styled.td`
-padding-top: 10px;
-padding-bottom: 10px;
+  padding-top 10px;
+  font-size: 26px;
+  width: 100%;
 `;
 
 class PlayerStats extends React.Component {
@@ -45,48 +71,56 @@ class PlayerStats extends React.Component {
     }
   }
 
+
   render() {
     if (this.props.playerOneStats.length === 0) return null;
+
     return (
-      <div>
+
         <PlayerOneName>
-          {this.props.playerOneClickedName.first_name} {this.props.playerOneClickedName.last_name}
-        </PlayerOneName>
-        <Table>
+
+
+      <Outer>
+        <PlayerTable>
           <tbody>
-            <CategoryRow>
-              <CategoryData>Height</CategoryData>
-              <CategoryData>Weight</CategoryData>
-              <CategoryData>Team</CategoryData>
-              <CategoryData>Games</CategoryData>
-              <CategoryData>Minutes</CategoryData>
-              <CategoryData>Points</CategoryData>
-              <CategoryData>Rebounds</CategoryData>
-              <CategoryData>Assists</CategoryData>
-              <CategoryData>Steals</CategoryData>
-              <CategoryData>Blocks</CategoryData>
-              <CategoryData>FG%</CategoryData>
-              <CategoryData>3FG%</CategoryData>
-              <CategoryData>FT%</CategoryData>
-            </CategoryRow>
-            <StatsRow>
-              <StatsData>{this.props.playerOneClickedName.height_feet}'{this.props.playerOneClickedName.height_inches}</StatsData>
-              <StatsData>{this.props.playerOneClickedName.weight_pounds}</StatsData>
-              <StatsData>{this.props.playerOneClickedName.team.abbreviation}</StatsData>
-              <StatsData>{this.props.playerOneStats[0].games_played}</StatsData>
-              <StatsData>{this.props.playerOneStats[0].min}</StatsData>
-              <StatsData>{this.props.playerOneStats[0].pts}</StatsData>
-              <StatsData>{this.props.playerOneStats[0].reb}</StatsData>
-              <StatsData>{this.props.playerOneStats[0].ast}</StatsData>
-              <StatsData>{this.props.playerOneStats[0].stl}</StatsData>
-              <StatsData>{this.props.playerOneStats[0].blk}</StatsData>
-              <StatsData>{this.props.playerOneStats[0].fg_pct}</StatsData>
-              <StatsData>{this.props.playerOneStats[0].fg3_pct}</StatsData>
-              <StatsData>{this.props.playerOneStats[0].ft_pct}</StatsData>
-            </StatsRow>
+            <tr><NameHeader>{this.props.playerOneClickedName.first_name} {this.props.playerOneClickedName.last_name}</NameHeader></tr>
+            <tr><PlayerHeaders>{this.props.playerOneClickedName.team.abbreviation}</PlayerHeaders></tr>
+            <tr><PlayerHeaders>{this.props.checkHeight()}</PlayerHeaders></tr>
+            <tr><PlayerHeaders>{this.props.checkWeight()}</PlayerHeaders></tr>
+            <tr><PlayerHeaders>{this.props.playerOneStats[0].games_played}</PlayerHeaders></tr>
+            <tr><PlayerHeaders>{this.props.playerOneStats[0].min}</PlayerHeaders></tr>
+            <tr><PlayerHeaders>{this.props.playerOneStats[0].pts}</PlayerHeaders></tr>
+            <tr><PlayerHeaders>{this.props.playerOneStats[0].reb}</PlayerHeaders></tr>
+            <tr><PlayerHeaders>{this.props.playerOneStats[0].ast}</PlayerHeaders></tr>
+            <tr><PlayerHeaders>{this.props.playerOneStats[0].stl}</PlayerHeaders></tr>
+            <tr><PlayerHeaders>{this.props.playerOneStats[0].blk}</PlayerHeaders></tr>
+            <tr><PlayerHeaders>{this.props.playerOneStats[0].fg_pct}</PlayerHeaders></tr>
+            <tr><PlayerHeaders>{this.props.playerOneStats[0].fg3_pct}</PlayerHeaders></tr>
+            <tr><PlayerHeaders>{this.props.playerOneStats[0].ft_pct}</PlayerHeaders></tr>
           </tbody>
-        </Table>
-      </div>
+        </PlayerTable>
+
+          <MiddleTable>
+            <tbody>
+              <tr><NameMiddle>&nbsp;</NameMiddle></tr>
+              <tr><MiddleHeaders>Team</MiddleHeaders></tr>
+              <tr><MiddleHeaders>Height</MiddleHeaders></tr>
+              <tr><MiddleHeaders>Weight</MiddleHeaders></tr>
+              <tr><MiddleHeaders>Games</MiddleHeaders></tr>
+              <tr><MiddleHeaders>Minutes</MiddleHeaders></tr>
+              <tr><MiddleHeaders>Points</MiddleHeaders></tr>
+              <tr><MiddleHeaders>Rebounds</MiddleHeaders></tr>
+              <tr><MiddleHeaders>Assists</MiddleHeaders></tr>
+              <tr><MiddleHeaders>Steals</MiddleHeaders></tr>
+              <tr><MiddleHeaders>Blocks</MiddleHeaders></tr>
+              <tr><MiddleHeaders>FG%</MiddleHeaders></tr>
+              <tr><MiddleHeaders>3FG%</MiddleHeaders></tr>
+              <tr><MiddleHeaders>FT%</MiddleHeaders></tr>
+            </tbody>
+          </MiddleTable>
+
+      </Outer>
+    </PlayerOneName>
     )
   }
 }

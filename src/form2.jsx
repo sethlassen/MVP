@@ -45,7 +45,9 @@ const Button = styled.button`
   color: white;
   font-weight: 100;
   cursor: pointer;
+  letter-spacing: 3px;
 `;
+
 
 class Form2 extends React.Component {
   constructor(props){
@@ -98,6 +100,7 @@ class Form2 extends React.Component {
         <option>1984-1985</option>
     </YearSelector>
       <Button>Submit</Button>
+
     </form>
     )
   }

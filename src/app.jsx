@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom'
 
 const axios = require('axios');
 
-import TeamsTable from './teamsTable.jsx'
 import PlayerForms from './playerForms.jsx'
 import MatchedPlayersList from './matchedPlayersList.jsx'
 import PlayerStats from './playerStats.jsx'
@@ -32,7 +31,6 @@ const Outer = styled.div`
 const LeftSide = styled.div`
   color: white;
   width: 55%;
-
 `;
 
 const Form1 = styled.div`
@@ -47,7 +45,6 @@ const FormTwo = styled.div`
 const RightSide = styled.div`
   color: white;
   width: 45%;
-
 `;
 
 class App extends React.Component {
@@ -217,23 +214,29 @@ class App extends React.Component {
     return weight;
   }
 
+  handleNewSearch() {
+    //event.preventDefault();
+    console.log('new search button clicked')
+  }
+
   render() {
     return (
       <Title>
        NBA Player Stats Comparison
-
       <Outer>
         <LeftSide>
           <Form1>
           <PlayerForms handleNameChange={this.handleNameChange.bind(this)} handlePlayerOneSubmit={this.handlePlayerOneSubmit.bind(this)} yearChangeOne={this.yearChangeOne.bind(this)} />
           </Form1>
+
           <MatchedPlayersList matchedPlayers={this.state.matchedPlayers} handleClick={this.handleClick.bind(this)} />
-          <PlayerStats playerOne={this.state.chosenPlayerOneId} playerOneStats={this.state.playerOneStats} playerOneClickedName={this.state.playerOneClickedName} checkHeight={this.checkHeightPlayerOne.bind(this)} checkWeight={this.checkWeightPlayerOne.bind(this)} />
+          <PlayerStats playerOne={this.state.chosenPlayerOneId} playerOneStats={this.state.playerOneStats} playerOneClickedName={this.state.playerOneClickedName} checkHeight={this.checkHeightPlayerOne.bind(this)} checkWeight={this.checkWeightPlayerOne.bind(this)} handleNewSearch={this.handleNewSearch.bind(this)}/>
         </LeftSide>
         <RightSide>
           <FormTwo>
             <Form2 handleNameTwoChange={this.handleNameTwoChange.bind(this)} handlePlayerTwoSubmit={this.handlePlayerTwoSubmit.bind(this)} yearChangeTwo={this.yearChangeTwo.bind(this)} />
           </FormTwo>
+
           <MatchedPlayerTwoList matchedPlayerTwo={this.state.matchedPlayerTwo} handleClickTwo={this.handleClickTwo.bind(this)}/>
           <PlayerTwoStats playerTwo={this.state.chosenPlayerOneId} playerTwoStats={this.state.playerTwoStats} playerTwoClickedName={this.state.playerTwoClickedName} checkHeight={this.checkHeightPlayerTwo.bind(this)} checkWeight={this.checkWeightPlayerTwo.bind(this)}/>
         </RightSide>

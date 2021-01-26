@@ -4,12 +4,15 @@ import styled from 'styled-components'
 
 const axios = require('axios');
 
+const Form = styled.form`
+  margin-right: 18%;
+`;
+
 const NameForm = styled.input`
   background-color: #282828;
   border: none;
   border-bottom: 1px solid white;
   padding-right: 10px;
-  text-align: center;
   color: white;
   width: 150px;
   font-family: sans-serif;
@@ -45,7 +48,23 @@ const Button = styled.button`
   color: white;
   font-weight: 100;
   cursor: pointer;
+  letter-spacing: 3px;
 `;
+
+// const Clear = styled.button`
+//   padding-left: 20px;
+//   padding-right: 20px;
+//   padding-top: 5px;
+//   padding-bottom: 5px;
+//   border: 1px solid white;
+//   background-color: #282828;
+//   border-radius: 12px;
+//   border-color: white;
+//   color: white;
+//   font-weight: 100;
+//   cursor: pointer;
+//   float: right;
+// `;
 
 class PlayerForms extends React.Component {
   constructor(props){
@@ -60,7 +79,7 @@ class PlayerForms extends React.Component {
       <div>
 
 
-      <form onSubmit={this.props.handlePlayerOneSubmit}>
+      <Form onSubmit={this.props.handlePlayerOneSubmit}>
 
         <NameForm type="text" placeholder="Player 1" onChange={this.props.handleNameChange} />
 
@@ -103,8 +122,10 @@ class PlayerForms extends React.Component {
           <option>1984-1985</option>
         </YearSelector>
         <Button>Submit</Button>
-    </form>
-
+    </Form>
+      {/* <form>
+        <Clear>New Search</Clear>
+      </form> */}
 
     </div>
 

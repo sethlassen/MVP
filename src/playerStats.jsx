@@ -16,51 +16,71 @@ const PlayerOneName = styled.div`
 `;
 
 const Outer = styled.div`
-
   display: flex;
 `;
 
 const PlayerTable = styled.table`
-
-width: 81%;
-border-collapse: collapse;
+  width: 81%;
+  border-collapse: collapse;
 `;
 
 const NameHeader = styled.th`
-border-bottom: 1px solid #585858;
-padding-bottom: 20px;
-padding-top 10px;
-font-size: 30px;
-
+  border-bottom: 1px solid #585858;
+  padding-bottom: 20px;
+  padding-top 10px;
+  font-size: 30px;
 `;
 
 const NameMiddle = styled.th`
-padding-bottom: 20px;
-padding-top 10px;
-font-size: 30px;
-border-bottom: 1px solid #585858;
+  padding-bottom: 20px;
+  padding-top 10px;
+  font-size: 30px;
+  border-bottom: 1px solid #585858;
 `;
 
 const PlayerHeaders = styled.th`
-border-bottom: 1px solid #585858;
-padding-bottom: 13px;
-padding-top 14px;
-font-size: 20px;
-font-weight: 100;
+  border-bottom: 1px solid #585858;
+  padding-bottom: 13px;
+  padding-top 14px;
+  font-size: 20px;
+  font-weight: 100;
 `;
 
 const MiddleTable = styled.table`
-border-collapse: collapse;
+  border-collapse: collapse;
   width: 20%;
   justify-content: center;
 `;
 
 const MiddleHeaders = styled.th`
-border-bottom: 1px solid #585858;
+  border-bottom: 1px solid #585858;
   padding-bottom: 10px;
   padding-top 10px;
   font-size: 26px;
   width: 100%;
+`;
+
+const NewSearchForm = styled.form`
+  margin-top: 15px;
+`;
+
+const NewSearchButton = styled.button`
+  letter-spacing: 3px;
+  margin-left: 80%;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border: 1px solid white;
+  background-color: #282828;
+  border-radius: 12px;
+  border-color: white;
+  color: white;
+  font-family: sans-serif;
+  font-size: 16px;
+  font-weight: 100;
+  font-size: 12px;
+  cursor: pointer;
 `;
 
 class PlayerStats extends React.Component {
@@ -76,8 +96,15 @@ class PlayerStats extends React.Component {
     if (this.props.playerOneStats.length === 0) return null;
 
     return (
+      <div>
+        <NewSearchForm onSubmit={this.props.handleNewSearch}>
+          <NewSearchButton>
+            New Search!
+          </NewSearchButton>
+        </NewSearchForm>
 
         <PlayerOneName>
+
 
 
       <Outer>
@@ -121,6 +148,7 @@ class PlayerStats extends React.Component {
 
       </Outer>
     </PlayerOneName>
+    </div>
     )
   }
 }

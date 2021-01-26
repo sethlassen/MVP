@@ -5,34 +5,33 @@ import styled from 'styled-components'
 const axios = require('axios');
 
 const PlayerTwoName = styled.div`
-font-family: sans-serif;
-letter-spacing: 5px;
+  font-family: sans-serif;
+  letter-spacing: 5px;
   text-align: center;
   font-size: 28px;
   font-weight: bold;
   padding-top: 10px;
   padding-bottom: 10px;
-  margin-top: 15px;
+  margin-top: 56px;
 `;
 
 const PlayerHeaders = styled.th`
-border-bottom: 1px solid #585858;
-padding-bottom: 13px;
-padding-top 14px;
-font-size: 20px;
-font-weight: 100;
+  border-bottom: 1px solid #585858;
+  padding-bottom: 13px;
+  padding-top 14px;
+  font-size: 20px;
+  font-weight: 100;
 `;
 
 const NameHeader = styled.th`
-border-bottom: 1px solid #585858;
-padding-bottom: 20px;
-padding-top 10px;
-font-size: 30px;
-
+  border-bottom: 1px solid #585858;
+  padding-bottom: 20px;
+  padding-top 10px;
+  font-size: 30px;
 `;
 
 const Table2 = styled.table`
-border-collapse: collapse;
+  border-collapse: collapse;
   width: 100%;
 `;
 
@@ -47,8 +46,8 @@ class PlayerTwoStats extends React.Component {
   render() {
     if (this.props.playerTwoStats.length === 0) return null;
     return (
-        <PlayerTwoName>
 
+        <PlayerTwoName>
           <Table2>
           <tbody>
             <tr><NameHeader>{this.props.playerTwoClickedName.first_name} {this.props.playerTwoClickedName.last_name}</NameHeader></tr>
@@ -68,6 +67,7 @@ class PlayerTwoStats extends React.Component {
           </tbody>
         </Table2>
         </PlayerTwoName>
+
     )
   }
 }

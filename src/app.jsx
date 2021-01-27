@@ -47,6 +47,22 @@ const RightSide = styled.div`
   width: 45%;
 `;
 
+const TitleHolder = styled.div`
+  border-bottom: 4px groove #585858;
+`;
+
+const Logo = styled.img`
+  max-width: 155px;
+  height: auto;
+`;
+
+const TitleText = styled.div`
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 11px;
+
+`;
+
 class App extends React.Component {
   constructor(props){
     super(props);
@@ -137,6 +153,9 @@ class App extends React.Component {
 
   handleClick(playerClicked) {
     console.log('this is playerOneClickedName: ', playerClicked)
+    if (playerClicked.last_name === 'Foyle') {
+      alert('You have chosen the greatest player to ever live. Well done.')
+    }
     axios.get('https://www.balldontlie.io/api/v1/season_averages?season=' + this.state.yearChosenOne + '&player_ids[]=' + playerClicked.id)
     .then((results) => {
       console.log('this is single player stats: ', results.data.data[0])
@@ -215,21 +234,24 @@ class App extends React.Component {
   }
 
   handleNewSearch() {
-    //event.preventDefault();
     console.log('new search button clicked')
   }
 
   render() {
     return (
       <Title>
-       NBA Player Stats Comparison
+        <TitleHolder>
+          <Logo src={'https://teamworxteambuilding.com/wp-content/uploads/2018/08/nba-logo-72dpi.jpg'} />
+          &nbsp;<TitleText>Player Stats Comparison</TitleText>
+        </TitleHolder>
+
       <Outer>
         <LeftSide>
           <Form1>
           <PlayerForms handleNameChange={this.handleNameChange.bind(this)} handlePlayerOneSubmit={this.handlePlayerOneSubmit.bind(this)} yearChangeOne={this.yearChangeOne.bind(this)} />
           </Form1>
 
-          <MatchedPlayersList matchedPlayers={this.state.matchedPlayers} handleClick={this.handleClick.bind(this)} />
+          <MatchedPlayersList matchedPlayers={this.state.matchedPlayers} handleClick={this.handleClick.bind(this)} handleNewSearch={this.handleNewSearch.bind(this)}/>
           <PlayerStats playerOne={this.state.chosenPlayerOneId} playerOneStats={this.state.playerOneStats} playerOneClickedName={this.state.playerOneClickedName} checkHeight={this.checkHeightPlayerOne.bind(this)} checkWeight={this.checkWeightPlayerOne.bind(this)} handleNewSearch={this.handleNewSearch.bind(this)}/>
         </LeftSide>
         <RightSide>
@@ -237,7 +259,7 @@ class App extends React.Component {
             <Form2 handleNameTwoChange={this.handleNameTwoChange.bind(this)} handlePlayerTwoSubmit={this.handlePlayerTwoSubmit.bind(this)} yearChangeTwo={this.yearChangeTwo.bind(this)} />
           </FormTwo>
 
-          <MatchedPlayerTwoList matchedPlayerTwo={this.state.matchedPlayerTwo} handleClickTwo={this.handleClickTwo.bind(this)}/>
+          <MatchedPlayerTwoList matchedPlayerTwo={this.state.matchedPlayerTwo} handleClickTwo={this.handleClickTwo.bind(this)} handleNewSearch={this.handleNewSearch.bind(this)}/>
           <PlayerTwoStats playerTwo={this.state.chosenPlayerOneId} playerTwoStats={this.state.playerTwoStats} playerTwoClickedName={this.state.playerTwoClickedName} checkHeight={this.checkHeightPlayerTwo.bind(this)} checkWeight={this.checkWeightPlayerTwo.bind(this)}/>
         </RightSide>
 

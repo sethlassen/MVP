@@ -35,6 +35,29 @@ const Table2 = styled.table`
   width: 100%;
 `;
 
+const NewSearchForm = styled.form`
+  margin-top: 15px;
+`;
+
+const NewSearchButton = styled.button`
+  letter-spacing: 3px;
+  justify-content: center;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border: 1px solid white;
+  background-color: #282828;
+  border-radius: 12px;
+  border-color: white;
+  color: white;
+  font-family: sans-serif;
+  font-size: 16px;
+  font-weight: 100;
+  font-size: 12px;
+  cursor: pointer;
+`;
+
 class PlayerTwoStats extends React.Component {
   constructor(props){
     super(props);
@@ -45,6 +68,14 @@ class PlayerTwoStats extends React.Component {
 
   render() {
     if (this.props.playerTwoStats.length === 0) return null;
+    if (this.props.playerTwoStats[0] === undefined) {
+      alert('This player did not play in that season. Please click New Search.');
+      return (
+        <div>
+
+        </div>
+      )
+    }
     return (
 
         <PlayerTwoName>
@@ -71,25 +102,5 @@ class PlayerTwoStats extends React.Component {
     )
   }
 }
-
-{/* <Table>
-          <tbody>
-            <StatsRow>
-              <StatsData>{this.props.playerOneClickedName.height_feet}'{this.props.playerOneClickedName.height_inches}</StatsData>
-              <StatsData>{this.props.playerOneClickedName.weight_pounds}</StatsData>
-              <StatsData>{this.props.playerOneClickedName.team.abbreviation}</StatsData>
-              <StatsData>{this.props.playerOneStats[0].games_played}</StatsData>
-              <StatsData>{this.props.playerOneStats[0].min}</StatsData>
-              <StatsData>{this.props.playerOneStats[0].pts}</StatsData>
-              <StatsData>{this.props.playerOneStats[0].reb}</StatsData>
-              <StatsData>{this.props.playerOneStats[0].ast}</StatsData>
-              <StatsData>{this.props.playerOneStats[0].stl}</StatsData>
-              <StatsData>{this.props.playerOneStats[0].blk}</StatsData>
-              <StatsData>{this.props.playerOneStats[0].fg_pct}</StatsData>
-              <StatsData>{this.props.playerOneStats[0].fg3_pct}</StatsData>
-              <StatsData>{this.props.playerOneStats[0].ft_pct}</StatsData>
-            </StatsRow>
-          </tbody>
-        </Table> */}
 
 export default PlayerTwoStats;

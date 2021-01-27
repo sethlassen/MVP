@@ -19,6 +19,7 @@ const NameForm = styled.input`
   font-size: 20px;
   letter-spacing: 3px;
   margin-top: 20px;
+  text-align: center;
 `;
 
 const YearSelector = styled.select`
@@ -51,20 +52,9 @@ const Button = styled.button`
   letter-spacing: 3px;
 `;
 
-// const Clear = styled.button`
-//   padding-left: 20px;
-//   padding-right: 20px;
-//   padding-top: 5px;
-//   padding-bottom: 5px;
-//   border: 1px solid white;
-//   background-color: #282828;
-//   border-radius: 12px;
-//   border-color: white;
-//   color: white;
-//   font-weight: 100;
-//   cursor: pointer;
-//   float: right;
-// `;
+const Option = styled.option`
+
+`;
 
 class PlayerForms extends React.Component {
   constructor(props){
@@ -84,7 +74,7 @@ class PlayerForms extends React.Component {
         <NameForm type="text" placeholder="Player 1" onChange={this.props.handleNameChange} />
 
         <YearSelector onChange={this.props.yearChangeOne}>
-          <option>Choose A Year</option>
+          <Option>Choose A Year</Option>
           <option>2018-2019</option>
           <option>2017-2018</option>
           <option>2016-2017</option>

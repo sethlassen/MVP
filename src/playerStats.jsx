@@ -91,15 +91,26 @@ class PlayerStats extends React.Component {
     }
   }
 
-
   render() {
     if (this.props.playerOneStats.length === 0) return null;
+    if (this.props.playerOneStats[0] === undefined) {
+      alert('This player did not play in that season. Please click New Search.');
+      return (
+        <div>
+          <NewSearchForm onSubmit={this.props.handleNewSearch}>
+            <NewSearchButton>
+             New Search
+            </NewSearchButton>
+          </NewSearchForm>
+        </div>
+      )
+    } else {
 
     return (
       <div>
         <NewSearchForm onSubmit={this.props.handleNewSearch}>
           <NewSearchButton>
-            New Search!
+            New Search
           </NewSearchButton>
         </NewSearchForm>
 
@@ -150,6 +161,7 @@ class PlayerStats extends React.Component {
     </PlayerOneName>
     </div>
     )
+    }
   }
 }
 

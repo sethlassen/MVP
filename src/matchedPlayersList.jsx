@@ -8,7 +8,8 @@ const Names = styled.div`
   cursor: pointer;
   margin-top: 20px;
   text-align: left;
-
+  margin-left: 11%;
+  padding-top: 5px;
 `;
 
 class MatchedPlayersList extends React.Component {
